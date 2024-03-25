@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Form</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <a href="./protected.html">Protected Resource</a>
+    <br><br>
+    <form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" id="submit" value="Submit">
+    </form>
+
+    <script>
+        console.log('Script working...');
+        const email_element = document.getElementById('email');
+        const password_element = document.getElementById('password');
+        const submit_element_button = document.getElementById('submit');
+
+        // console.log('Email:', email_element);
+        // console.log('Password:', password_element);
+
+        submit_element_button.addEventListener('click', (event) => {
+            console.log('Button clicked...');
+            event.preventDefault();
+
+            const password = password_element.value;
+            const email = email_element.value;
+
+            console.log('Email:', email);
+            console.log('Password:', password);
+    
+            const reqData = {
+                "identifier": email,
+                "password": password
+            }
+
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(reqData)
+            };
+
+            fetch('http://localhost:8085/auth', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Data:', data);
+                    console.log('Token:', data.token);
+                    console.log('Save token to browser local storage');
+
+                    localStorage.setItem('token', data.token);
+
+                    window.location.href = './protected.html';
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
