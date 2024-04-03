@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation</title>
+  </head>
+  <body>
+    <h1>DOM Manipulation</h1>
+    <script>
+      console.log("Hello!");
+    </script>
+    <button id="blue">Blue</button>
+    <button id="red">Red</button>
+    <br />
+    <br />
+    <button id="white">White</button>
+    <button id="purple">Purple</button>
+    <br />
+    <br />
+    <button id="surpriseMe">Surprise Me</button>
+    <button id="dontSurpriseMe">Don't Surprise Me</button>
+    <p id="surpriseText" style="display: none;">You're surprised!</p>
+    <script>
+      const blueButton = document.getElementById("blue");
+      const redButton = document.getElementById("red");
+      const whiteButton = document.getElementById("white");
+      const purpleButton = document.getElementById("purple");
+      const surpriseMeButton = document.getElementById("surpriseMe");
+      const dontSurpriseMeButton = document.getElementById("dontSurpriseMe");
+      const heading = document.querySelector("h1");
+      const surpriseText = document.getElementById("surpriseText");
+
+      function handleBlueButtonClick() {
+        document.body.style.backgroundColor = "blue";
+        console.log("Blue button clicked!");
+      }
+
+      function handleRedButtonClick() {
+        document.body.style.backgroundColor = "red";
+        console.log("Red button clicked!");
+      }
+
+      function handleWhiteButtonClick() {
+        heading.style.color = "white";
+        console.log("Changed to white text of h1");
+      }
+
+      function handlePurpleButtonClick() {
+        heading.style.color = "purple";
+        console.log("Changed to purple text of h1");
+      }
+
+      function handleSurpriseMeButtonClick() {
+        surpriseText.style.display = "block";
+        console.log("You're surprised!");
+      }
+
+      function handleDontSurpriseMeButtonClick() {
+        surpriseText.style.display = "none";
+        console.log("Surprise removed!");
+      }
+
+      redButton.addEventListener("click", handleRedButtonClick);
+      blueButton.addEventListener("click", handleBlueButtonClick);
+      whiteButton.addEventListener("click", handleWhiteButtonClick);
+      purpleButton.addEventListener("click", handlePurpleButtonClick);
+      surpriseMeButton.addEventListener("click", handleSurpriseMeButtonClick);
+      dontSurpriseMeButton.addEventListener("click", handleDontSurpriseMeButtonClick);
+    </script>
+  </body>
+</html>
